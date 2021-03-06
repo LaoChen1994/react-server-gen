@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npx nodemon -w",
     "dev": "cd ./client && npm run dev",
-    "build-server": "rm -r ./dist/* && mkdir ./dist/views && cp ./app/views/* ./dist/view/* && npx tsc",
+    "build-server": "rimraf -r ./dist/* && npx tsc && cd ./dist && mkdir views && copy ../app/views/* ./view/*",
     "dep:install": "yarn && cd ./client && yarn"
   },
   "author": "",

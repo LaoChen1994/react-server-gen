@@ -2,7 +2,6 @@ import Koa from 'koa';
 // @ts-ignore
 import koaViews from 'koa-nunjucks-2';
 import path from 'path';
-import mime from 'mime';
 import fs from 'fs';
 import LoadUtil from './init/load';
 import { router } from './init/route';
@@ -21,10 +20,10 @@ app.use(
 
 app.use(async (ctx, next) => {
   const { render } = ctx;
-  ctx._renderState = {};
+  ctx.innerState = {};
 
   ctx.setState = function (state: Record<string, any>) {
-    ctx._renderState = { ...ctx._renderState, ...state };
+    ctx.innerState = { ...ctx.innerState, ...state };
   };
 
   ctx.setHeader = (opts: Record<string, string>) => {
@@ -33,11 +32,11 @@ app.use(async (ctx, next) => {
     });
   };
 
-  ctx.render = async (path: string, state?: Record<string, any>) => {
-    const renderState = ctx._renderState;
-    ctx._renderState = {};
+  ctx.render = async (templatePath: string, state?: Record<string, any>) => {
+    const renderState = ctx.innerState;
+    ctx.innerState = {};
 
-    render(path, state || renderState);
+    render(templatePath, state || renderState);
   };
 
   ctx.setState({ loadJs: LoadUtil.loadJs });
@@ -47,11 +46,10 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   const urlPath = ctx.path;
-  const type = mime.getType('js');
   const regx = /\/public\/(\w+)\/(.*)/;
 
   if (regx.test(urlPath)) {
-    const [_, dir, filename] = urlPath.match(regx)!;
+    const [, , filename] = urlPath.match(regx)!;
     ctx.body = fs.createReadStream(
       path.resolve(__dirname, `../local/${filename}`)
     );
