@@ -1,15 +1,30 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import { Home } from './home'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { Home } from './home';
 
-export default class App extends Component {
-    render() {
-        return (
-            <div>
-                <Home />
-            </div>
-        )
-    }
+interface AppComponent {
+  title: string;
 }
 
-ReactDOM.render(<App />, document.getElementById('app'))
+export default class App extends Component<{}, AppComponent> {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: 'Hello World',
+    };
+  }
+
+  render() {
+    const { title } = this.state;
+
+    return (
+      <div>
+        <h1>{title}</h1>
+        <Home />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,11 +1,11 @@
-const path = require("path");
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: path.resolve(__dirname, "../pages/test/app.tsx"),
+  entry: path.resolve(__dirname, '../pages/test/app.tsx'),
   output: {
-    filename: "[id].js",
-    path: path.resolve(__dirname, "../../local"),
+    filename: '[id].js',
+    path: path.resolve(__dirname, '../../local'),
   },
   module: {
     rules: [
@@ -13,9 +13,9 @@ module.exports = {
         test: /\.jsx?$/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env"],
+              presets: ['@babel/preset-env'],
             },
           },
         ],
@@ -25,35 +25,40 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/preset-env", "@babel/preset-typescript", "@babel/preset-react"],
+              presets: [
+                '@babel/preset-env',
+                '@babel/preset-typescript',
+                '@babel/preset-react',
+              ],
             },
           },
         ],
         exclude: /node_modules/,
       },
       {
-          test: /\.css/,
-          use: [
-          'style-loader', 
-          "css-modules-typescript-loader",
+        test: /\.css/,
+        use: [
+          'style-loader',
+          'css-modules-typescript-loader',
           {
             loader: 'css-loader',
             options: {
               modules: true,
-            }
-          }],
-          exclude: /node_modules/
-      }
+            },
+          },
+        ],
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "[name].css"
-    })
+      filename: '[name].css',
+    }),
   ],
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
-  }
+    extensions: ['.tsx', '.ts', '.js'],
+  },
 };
