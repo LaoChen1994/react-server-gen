@@ -32,9 +32,10 @@ app.use(async (ctx, next) => {
     });
   };
 
-  ctx.render = async (templatePath: string, state?: Record<string, any>) => {
+  ctx.render = async (fielPath: string, state?: Record<string, any>) => {
     const renderState = ctx.innerState;
     ctx.innerState = {};
+    const templatePath = path.resolve(__dirname, './views');
 
     render(templatePath, state || renderState);
   };

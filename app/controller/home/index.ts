@@ -12,7 +12,7 @@ export default {
       },
     });
 
-    return ctx.render('./index/index');
+    return ctx.render('index/index.njk');
   },
   async getDownloadFile(ctx: IControllerCtx) {
     ctx.response.attachment('text.text');

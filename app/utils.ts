@@ -3,7 +3,7 @@ import path from 'path';
 
 const importAllFile = <T>(
   targetPath: string,
-  regx: RegExp = /.(t|j)s$/,
+  regx: RegExp = /\.(t|j)s$/,
   store: Promise<T>[] = []
 ): Promise<Promise<T>[]> => {
   const requireList: Promise<T>[] = store || [];
@@ -15,9 +15,10 @@ const importAllFile = <T>(
       }
 
       files.map((filePath) => {
+        const realPath = path.join(targetPath, filePath);
         if (regx.test(filePath)) {
-          requireList.push(import(path.join(targetPath, filePath)));
-        } else if (fs.statSync(targetPath + filePath).isDirectory()) {
+          requireList.push(import(realPath));
+        } else if (fs.statSync(realPath).isDirectory()) {
           importAllFile(path.join(targetPath, filePath), regx, requireList);
         }
       });
