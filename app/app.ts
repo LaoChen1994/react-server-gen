@@ -1,12 +1,14 @@
 import Koa from 'koa';
 // @ts-ignore
 import koaViews from 'koa-nunjucks-2';
+import GetConfig from './init/config'
 import path from 'path';
 import fs from 'fs';
-import LoadUtil from './init/load';
+import VersionLoader from './init/version';
 import { router } from './init/route';
 
 const app = new Koa();
+const loader = new VersionLoader();
 
 app.use(
   koaViews({
@@ -35,25 +37,35 @@ app.use(async (ctx, next) => {
   ctx.render = async (fielPath: string, state?: Record<string, any>) => {
     const renderState = ctx.innerState;
     ctx.innerState = {};
-    const templatePath = path.resolve(__dirname, './views');
+    const templatePath = path.join(__dirname, './views', fielPath);
 
     render(templatePath, state || renderState);
   };
 
-  ctx.setState({ loadJs: LoadUtil.loadJs });
+  ctx.setState({
+    loadJs: loader.loadJs.bind(loader),
+    loadCss: loader.loadCss.bind(loader),
+  });
 
   await next();
 });
+app.use(GetConfig)
 
 app.use(async (ctx, next) => {
   const urlPath = ctx.path;
   const regx = /\/public\/(\w+)\/(.*)/;
+  const { publicPath } = ctx.config
 
   if (regx.test(urlPath)) {
     const [, , filename] = urlPath.match(regx)!;
+
     ctx.body = fs.createReadStream(
       path.resolve(__dirname, `../local/${filename}`)
     );
+  }
+
+  if (publicPath && urlPath.indexOf(publicPath) !== -1) {
+    ctx.body = fs.createReadStream(urlPath)
   }
 
   await next();

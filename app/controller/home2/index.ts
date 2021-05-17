@@ -10,6 +10,6 @@ export default {
       },
     });
 
-    return ctx.render('index/index.njk');
+    return ctx.render('home2/index');
   },
 };

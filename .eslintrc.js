@@ -39,8 +39,14 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': ['off'],
+    "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false, extensions: ['.js', '.ts', '.tsx'] }],
     'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
     'no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/no-var-requires': [
+      'warn',
+      { extensions: ['.ts', '.tsx'] },
+    ],
   },
   settings: {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
