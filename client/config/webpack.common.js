@@ -82,12 +82,6 @@ module.exports = (env) => {
       // 分割代码块
       splitChunks: {
         chunks: 'all',
-        /**
-         * initial 入口 chunk，对于异步导入的文件不处理
-            async 异步 chunk，只对异步导入的文件处理
-            all 全部 chunk
-         */
-
         // 缓存分组
         cacheGroups: {
           // 第三方模块

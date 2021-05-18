@@ -6,6 +6,7 @@ import path from 'path';
 import fs from 'fs';
 import VersionLoader from './init/version';
 import { router } from './init/route';
+import { mimes } from './constant'
 
 const app = new Koa();
 const loader = new VersionLoader();
@@ -65,6 +66,9 @@ app.use(async (ctx, next) => {
   }
 
   if (publicPath && urlPath.indexOf(publicPath) !== -1) {
+    const extRegx =  /\.(\w+)(\..+)?/i
+    const ext = urlPath.match(extRegx)![1]
+    ctx.set('Content-Type', mimes[ext as keyof typeof mimes])
     ctx.body = fs.createReadStream(urlPath)
   }
 
