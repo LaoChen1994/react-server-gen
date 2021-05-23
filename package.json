@@ -9,7 +9,8 @@
     "build": "yarn build-server && yarn build-client",
     "build-server": "rm -r ./config/version* || : && rm -r ./dist ||: && mkdir dist && npx tsc && cd ./dist && mkdir views && cp -r ../app/views/ ./views/",
     "build-client": "rm -r ./config/version* || : && rm -r ./local || : && mkdir local && cd ./client && npm run build",
-    "dep:install": "yarn && cd ./client && yarn"
+    "dep:install": "yarn && cd ./client && yarn",
+    "start:prod": "/bin/sh ./script/start.sh"
   },
   "author": "",
   "license": "ISC",
