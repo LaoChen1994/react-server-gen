@@ -16,14 +16,16 @@ module.exports = (env) => {
     },
     plugins: [
       new DllPlugin({
-        name: '_dll_[name]',
+        name: 'baseDep',
         path: path.join(__dirname, '../../local/[name]_manifest.json'),
       }),
       new VersionGenPlugin({
-        jsPublicPath: 'http://127.0.0.1:8001/js/',
-        cssPublicPath: 'http://127.0.0.1:8001/css/',
+        jsPublicPath: 'http://127.0.0.1:3000/public/',
+        cssPublicPath: 'http://127.0.0.1:3000/public/',
         localPath: path.resolve(__dirname, '../../local'),
         isProduction,
+        jsVersionPath: path.resolve(__dirname, '../../config/version_js.json'),
+        cssVersionPath: path.resolve(__dirname, '../../config/version_css.json')
       }),
     ],
   };

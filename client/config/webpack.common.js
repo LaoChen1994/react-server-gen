@@ -12,6 +12,7 @@ module.exports = (env) => {
     output: {
       filename: isProduction ? '[name]_[hash:8].js' : '[name].js',
       path: path.resolve(__dirname, '../../local'),
+      publicPath: 'http://127.0.0.1:3000/public/'
     },
     module: {
       rules: [
@@ -64,16 +65,18 @@ module.exports = (env) => {
         linkType: 'text/css'
       }),
       new VersionGenPlugin({
-        jsPublicPath: 'http://127.0.0.1:8001/js/',
-        cssPublicPath: 'http://127.0.0.1:8001/css/',
+        jsPublicPath: 'http://127.0.0.1:3000/public/',
+        cssPublicPath: 'http://127.0.0.1:3000/public/',
         localPath: path.resolve(__dirname, '../../local'),
         isProduction,
-        mode: 'merge'
+        mode: 'merge',
+        jsVersionPath: path.resolve(__dirname, '../../config/version_js.json'),
+        cssVersionPath: path.resolve(__dirname, '../../config/version_css.json')
       }),
-      // new DllReferencePlugin({
-      //   context: __dirname,
-      //   manifest: require(path.resolve(__dirname, '../../local/base_manifest.json'))
-      // })
+      new DllReferencePlugin({
+        context: __dirname,
+        manifest: require(path.resolve(__dirname, '../../local/base_manifest.json'))
+      })
     ],
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
@@ -86,7 +89,7 @@ module.exports = (env) => {
         cacheGroups: {
           // 第三方模块
           vendor: {
-            name: 'base', // chunk 名称
+            name: 'vendor', // chunk 名称
             priority: 1, // 权限更高，优先抽离，重要！！！
             test: /node_modules/, // 一般第三方模块都是从node_modules引进来如lodash
             minSize: 0, // 大小限制

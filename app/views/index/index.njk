@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {{ loadCss('test2') | safe }}
-</head>
-<body>
+{% set title  = 'HOME INDEX' %}
+{% extends "../common/index.njk" %}
+
+{% block content %}
     <div id="app"></div>
-    {{ loadJs('base') | safe }}
+{% endblock %}
+
+{% block css %}
+    {{ loadCss('test2') | safe }}    
+{% endblock %}
+
+{% block js %}
     {{ loadJs('test2') | safe }}
-</body>
-</html>
+{% endblock %}

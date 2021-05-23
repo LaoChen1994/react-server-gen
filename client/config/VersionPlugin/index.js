@@ -1,6 +1,7 @@
 const path = require('path');
 const { URL } = require('url');
 const fs = require('fs');
+const chalk = require('chalk');
 
 const STATIC_FILE_TYPE = {
   CSS: 'css',
@@ -22,6 +23,8 @@ class VersionPlugin {
       isProduction = false,
       publicPath = '',
       mode = GEN_MODE.OVERITE,
+      jsVersionPath = '',
+      cssVersionPath = ''
     } = props;
 
     this.jsPublicPath = jsPublicPath;
@@ -30,6 +33,8 @@ class VersionPlugin {
     this.isProduction = isProduction;
     this.publicPath = publicPath;
     this.mode = mode;
+    this.jsVersionPath = jsVersionPath
+    this.cssVersionPath = cssVersionPath
   }
 
   getStaticPath(fileName) {
@@ -62,11 +67,11 @@ class VersionPlugin {
     const that = this;
     const jsVersionPath = path.resolve(
       __dirname,
-      '../../../config/version_js.json'
+      this.jsVersionPath
     );
     const cssVersionPath = path.resolve(
       __dirname,
-      '../../../config/version_css.json'
+     this.cssVersionPath
     );
 
     compiler.hooks.emit.tapAsync('myPlugin', async function (compilation, cb) {
@@ -103,6 +108,9 @@ class VersionPlugin {
 
       fs.writeFileSync(jsVersionPath, JSON.stringify(chunkJSMap));
       fs.writeFileSync(cssVersionPath, JSON.stringify(chunkCssMap));
+
+      chalk.yellow(`js version 文件已经生成${jsVersionPath}`)
+      chalk.yellow(`css version 文件已经生成${cssVersionPath}`)
 
       cb();
     });
