@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './index.css';
+import styles from './index.scss';
 
 export const About = (): React.ReactElement => (
   <div className={styles.wrapper}>About 123</div>

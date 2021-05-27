@@ -47,12 +47,12 @@ module.exports = (env) => {
           include: [path.resolve(__dirname, '../pages')],
         },
         {
-          test: /\.css$/,
+          test: /\.s?(c|a)ss$/,
           use: [
-            // isProduction ? MiniCssExtractPlugin.loader :  'style-loader',
-            MiniCssExtractPlugin.loader,
+            isProduction ? MiniCssExtractPlugin.loader :  'style-loader',
             'css-modules-typescript-loader',
-            'css-loader?modules'
+            'css-loader?modules',
+            'sass-loader'
           ],
           exclude: /node_modules/,
           include: [path.resolve(__dirname, '../pages')],

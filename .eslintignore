@@ -3,3 +3,4 @@ local/*
 node_modules/*
 webpack.*.js
 interface.ts
+*.d.ts
