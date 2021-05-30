@@ -12,6 +12,7 @@
   {% block content %}{% endblock %}
   {{ loadJs('base') | safe }}
   {{ loadJs('vendor')  | safe }}
+  {{ loadJs('common') | safe }}
   {% block js %}
     
   {% endblock %}
