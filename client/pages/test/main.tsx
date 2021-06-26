@@ -26,5 +26,7 @@ export default class App extends Component<{}, AppComponent> {
     );
   }
 }
+console.log('App -> ', <App />)
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const renderNode = ReactDOM.render(<App />, document.getElementById('app'));
+console.log('renderNode ->', renderNode)
