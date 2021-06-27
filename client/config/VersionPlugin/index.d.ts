@@ -2,7 +2,7 @@ import { Compiler } from 'webpack'
 export enum GEN_MODE {
   MERGE =  'merge',
   OVERITE =  'overwrite',
-};
+}
 interface IOptions{
   jsPublicPath: string
   cssPublicPath: string

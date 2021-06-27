@@ -5,14 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "npx nodemon -w",
-    "dev": "cd ./client && npm run dev",
-    "build": "npm run build-server && npm run build-client && npm run copy-dist",
-    "build-client": "npm run clear-client && cd ./client && npm run build",
-    "build-server": "npm run clean-server &&  npx tsc",
-    "build-dll": "cd ./client && npm run build-dll",
-    "clean-server": "rimraf -r ./dist/*",
-    "clear-client": "rimraf -r ./local/*",
-    "copy-dist": "npm run cp-views && npm run cp-config && npm run cp-client",
+    "dev": "cd ./client && yarn dev",
+    "build": "yarn build-server && yarn build-client && yarn copy-dist",
+    "build-client": "yarn clear-client && cd ./client && yarn build",
+    "build-server": "yarn clean-server &&  npx tsc",
+    "build-dll": "cd ./client && yarn build-dll",
+    "clean-server": "rm -r ./dist/* || :",
+    "clear-client": "rm -r ./local/* || :",
+    "copy-dist": "yarn cp-views && yarn cp-config && yarn cp-client",
     "cp-views": "mkdir ./dist/app/view ||: && cp -r ./app/views ./dist/app/views",
     "cp-config": "cp ./config/* ./dist/config",
     "cp-client": "mkdir ./dist/local || : && cp ./local/* ./dist/local",
@@ -26,7 +26,7 @@
     "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
     "@types/ioredis": "^4.17.9",
-    "@types/koa": "^2.11.6",
+    "@types/koa": "^2.13.3",
     "@types/koa-router": "^7.4.1",
     "@types/lodash": "^4.14.170",
     "@types/react": "^17.0.2",
@@ -51,9 +51,7 @@
     "prettier": "^2.2.1",
     "style-loader": "^2.0.0",
     "ts-loader": "^8.0.12",
-    "ts-node": "^9.1.1",
-    "webpack": "^5.10.1",
-    "webpack-env": "^0.8.0"
+    "ts-node": "^9.1.1"
   },
   "dependencies": {
     "koa": "^2.13.0",
@@ -63,6 +61,8 @@
     "lodash": "^4.17.21",
     "mime": "^2.4.7",
     "tslint": "^6.1.3",
-    "typescript": "4.1"
+    "typescript": "4.1",
+    "webpack": "^5.40.0",
+    "webpack-cli": "^4.7.2"
   }
 }

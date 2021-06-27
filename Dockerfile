@@ -3,10 +3,12 @@ ENTRYPOINT [ "/bin/echo", "react server gen in DOCKER" ]
 WORKDIR /Users/pidan/Learn/Essays/learnDocker/react-server-gen
 COPY . .
 ENV NODE_ENV production
-RUN npm run dep:install
-RUN npm run build
+RUN npm install yarn
+RUN yarn global add webpack-cli webpack
+RUN yarn dep:install
+RUN yarn build
 WORKDIR ./dist/
 
 EXPOSE 3000
 
-CMD ['node', './app.js']
+CMD 'yarn start:build'
