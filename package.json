@@ -6,9 +6,18 @@
   "scripts": {
     "start": "npx nodemon -w",
     "dev": "cd ./client && npm run dev",
-    "build": "npm run build-server && cd ./client && npm run build",
-    "build-server": "rimraf -r ./dist/* && npx tsc",
-    "dep:install": "npm install && cd ./client && npm install"
+    "build": "npm run build-server && npm run build-client && npm run copy-dist",
+    "build-client": "npm run clear-client && cd ./client && npm run build",
+    "build-server": "npm run clean-server &&  npx tsc",
+    "build-dll": "cd ./client && npm run build-dll",
+    "clean-server": "rimraf -r ./dist/*",
+    "clear-client": "rimraf -r ./local/*",
+    "copy-dist": "npm run cp-views && npm run cp-config && npm run cp-client",
+    "cp-views": "mkdir ./dist/app/view ||: && cp -r ./app/views ./dist/app/views",
+    "cp-config": "cp ./config/* ./dist/config",
+    "cp-client": "mkdir ./dist/local || : && cp ./local/* ./dist/local",
+    "dep:install": "npm install && cd ./client && npm install",
+    "start:build": "export NODE_ENV='prod' && cd ./dist && node ./app/app.js"
   },
   "author": "",
   "license": "ISC",

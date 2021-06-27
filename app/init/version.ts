@@ -42,6 +42,7 @@ export default class VersionLoader {
 
   loadCss(chunkName: string) {
     const linkPath = this.cssVersionMap[chunkName]
+
     if (!linkPath) return ''
     return `<link rel="stylesheet" type="text/css" href="${linkPath}" />
     `

@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config ./config/webpack.dev.js --env=development",
-    "build": "webpack --config ./config/webpack.prod.js"
+    "dev": "npm run build-dll && npm run dev-client",
+    "build": "npm run build-dll && npm run build-client",
+    "dev-client": "webpack --config ./config/webpack.dev.js --env=development",
+    "build-client": "webpack --config ./config/webpack.prod.js",  
+    "build-dll": "webpack --config ./config/webpack.dll.dev.js"
   },
   "author": "",
   "license": "ISC",

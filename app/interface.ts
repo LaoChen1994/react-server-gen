@@ -1,3 +1,4 @@
+import VersionLoader from 'init/version';
 import { DefaultContext } from 'koa'
 
 interface ISetStateFunc {
@@ -7,9 +8,11 @@ interface ISetStateFunc {
 
 export interface IMyApplicationCtx {
   config: Record<string, any>
+  getConfig: (key: string) => any
   innerState: Record<string, any>
   setState: ISetStateFunc
   clearState: () => void
   render: (filePath: string, state: Record<string, any>) => void
   setHeader: (opts: Record<string, any>) => void
+  versionLoader: VersionLoader
 }

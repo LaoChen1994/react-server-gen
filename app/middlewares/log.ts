@@ -1,7 +1,8 @@
 import Application from "koa";
 
 const logMiddileware: Application.Middleware = (ctx, next) => {
-  console.log(`request path ->`, ctx.url)
+  const requestStr = `request path -> ${ctx.url}`
+  console.log(requestStr)
   return next()  
 }
 

@@ -12,7 +12,7 @@
         "<node_internals>/**"
       ],
       "runtimeExecutable": "yarn",
-      "runtimeArgs": ["start"],
+      "runtimeArgs": ["start:build"],
     }
   ]
 }

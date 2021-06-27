@@ -2,6 +2,7 @@ FROM node:12
 ENTRYPOINT [ "/bin/echo", "react server gen in DOCKER" ]
 WORKDIR /Users/pidan/Learn/Essays/learnDocker/react-server-gen
 COPY . .
+ENV NODE_ENV production
 RUN npm run dep:install
 RUN npm run build
 WORKDIR ./dist/

@@ -15,15 +15,17 @@ const headerMiddleware: Application.Middleware<
   let staticPath = '';
   let extension = '';
 
+  // 这部分是build的场景用的
   if (regx.test(urlPath)) {
     const [, filename, ext] = urlPath.match(regx)!;
 
     if (filename && ext) {
-      staticPath = path.resolve(__dirname, `../../local/${filename}.${ext}`);
+      staticPath = `${publicPath}/${filename}.${ext}`;
       extension = ext;
     }
   }
 
+  // 这部分是本地加载的时候用的
   if (publicPath && urlPath.indexOf(publicPath) !== -1) {
     const extRegx = /\.(\w+)(\..+)?/i;
     extension = urlPath.match(extRegx)![1];

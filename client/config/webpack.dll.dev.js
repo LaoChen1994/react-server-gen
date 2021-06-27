@@ -16,7 +16,7 @@ module.exports = (env) => {
     },
     plugins: [
       new DllPlugin({
-        name: 'baseDep',
+        name: 'base',
         path: path.join(__dirname, '../../local/[name]_manifest.json'),
       }),
       new VersionGenPlugin({
