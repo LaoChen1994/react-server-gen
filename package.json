@@ -16,7 +16,7 @@
     "cp-views": "mkdir ./dist/app/view ||: && cp -r ./app/views ./dist/app/views",
     "cp-config": "cp ./config/* ./dist/config",
     "cp-client": "mkdir ./dist/local || : && cp ./local/* ./dist/local",
-    "dep:install": "npm install && cd ./client && npm install",
+    "dep:install": "yarn && cd ./client && yarn",
     "start:build": "export NODE_ENV='prod' && cd ./dist && node ./app/app.js"
   },
   "author": "",
