@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon -w",
+    "start": "npx nodemon --config ./nodemon.json",
     "dev": "cd ./client && yarn dev",
     "build": "yarn build-server && yarn build-client && yarn copy-dist",
     "build-client": "yarn clear-client && cd ./client && yarn build",

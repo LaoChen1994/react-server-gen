@@ -1,18 +1,19 @@
 {
-    "restartable": "rs",
-    "verbose": true,
-    "execMap": {
-      "": "node",
-      "js": "node --harmony",
-      "ts": "ts-node"
-    },
-    "exec": "npx ts-node ./app/app.ts",
-    "ext": "js json ts tsx njk",
-    "watch": ["app/*"],
-    "env": {
-      "NODE_ENV": "development",
-      "PORT": "3002"
-    },
-    "legacy-watch": true,
-    "delay": 3
+  "restartable": "rs",
+  "verbose": true,
+  "execMap": {
+    "": "node",
+    "js": "node --harmony",
+    "ts": "ts-node"
+  },
+  "exec": "npx ts-node ./app/app.ts",
+  "ext": "js,json,ts,tsx,njk",
+  "watch": ["app"],
+  "ignore": [".git", "node_modules"],
+  "env": {
+    "NODE_ENV": "development",
+    "PORT": "3002"
+  },
+  "legacy-watch": true,
+  "delay": 3
 }
