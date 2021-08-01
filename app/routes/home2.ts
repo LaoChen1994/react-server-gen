@@ -5,5 +5,5 @@ export default [
     path: '/home2',
     method: 'get',
     controller: HomeController.getIndexHtml,
-  }
+  },
 ];

@@ -1,21 +1,22 @@
-import VersionLoader from '../init/version'
-import { IMyApplicationCtx } from 'interface';
 import Application, { DefaultState } from 'koa';
-
+import { IMyApplicationCtx } from '../interface';
+import VersionLoader from '../init/version';
 
 const viewLoaderMiddleware: Application.Middleware<
   DefaultState,
   IMyApplicationCtx
 > = async (ctx, next) => {
-  let loader = ctx.versionLoader
-  const config = ctx.config
+  let loader = ctx.versionLoader;
+  const { config } = ctx;
 
   if (!ctx.versionLoader) {
-    const { versionJs, versionCss } = config
-    loader = ctx.versionLoader = new VersionLoader({
+    const { versionJs, versionCss } = config;
+    loader = new VersionLoader({
       jsVersionPath: versionJs,
-      cssVersionPath: versionCss
-    })
+      cssVersionPath: versionCss,
+    });
+
+    ctx.versionLoader = loader;
   }
 
   ctx.setState({
@@ -27,5 +28,3 @@ const viewLoaderMiddleware: Application.Middleware<
 };
 
 export default viewLoaderMiddleware;
-
-

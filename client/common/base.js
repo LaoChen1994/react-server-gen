@@ -1,3 +1,3 @@
-import 'react'
-import 'react-dom'
-import 'lodash'
+import 'react';
+import 'react-dom';
+import 'lodash';

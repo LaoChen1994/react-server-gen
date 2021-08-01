@@ -1,12 +1,12 @@
-import Application from "koa";
+import Application from 'koa';
 // @ts-ignore
-import config from '../../config/config.js'
-import { get } from 'lodash'
+import { get } from 'lodash';
+import config from '../../config/config';
 
 const initConfig: Application.Middleware = (ctx, next) => {
-  ctx.config = config
-  ctx.getConfig = (key: string) => get(config, key)
-  return next()  
-}
+  ctx.config = config;
+  ctx.getConfig = (key: string) => get(config, key);
+  return next();
+};
 
-export default initConfig
+export default initConfig;

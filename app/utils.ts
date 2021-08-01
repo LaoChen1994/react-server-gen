@@ -3,7 +3,7 @@ import path from 'path';
 
 const importAllFile = <T>(
   targetPath: string,
-  regx: RegExp = /\.(t|j)s$/,
+  regx = /\.(t|j)s$/,
   store: Promise<T>[] = []
 ): Promise<Promise<T>[]> => {
   const requireList: Promise<T>[] = store || [];
@@ -14,7 +14,7 @@ const importAllFile = <T>(
         reject(err);
       }
 
-      files.map((filePath) => {
+      files.forEach((filePath) => {
         const realPath = path.join(targetPath, filePath);
         if (regx.test(filePath)) {
           requireList.push(import(realPath));

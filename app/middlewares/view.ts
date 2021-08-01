@@ -1,7 +1,7 @@
-import { IMyApplicationCtx } from 'interface';
 import Application, { DefaultState } from 'koa';
 
 import path from 'path';
+import { IMyApplicationCtx } from '../interface';
 
 const viewMiddleware: Application.Middleware<
   DefaultState,

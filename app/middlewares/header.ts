@@ -1,12 +1,12 @@
-import { IMyApplicationCtx } from 'interface';
 import Application, { DefaultState } from 'koa';
+import { IMyApplicationCtx } from '../interface';
 
 const headerMiddleware: Application.Middleware<
   DefaultState,
   IMyApplicationCtx
 > = async (ctx, next) => {
   ctx.setHeader = (opts: Record<string, string>) => {
-    Object.keys(opts).map((key) => {
+    Object.keys(opts).forEach((key) => {
       ctx.set(key, opts[key]);
     });
   };

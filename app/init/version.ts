@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs'
+import fs from 'fs';
 
 interface IVersionLoaderProps {
   jsVersionPath?: string;
@@ -7,9 +7,12 @@ interface IVersionLoaderProps {
 }
 export default class VersionLoader {
   public jsPath: string;
+
   public cssPath: string;
-  public jsVersionMap: Record<string, string>
-  public cssVersionMap: Record<string, string>
+
+  public jsVersionMap: Record<string, string>;
+
+  public cssVersionMap: Record<string, string>;
 
   constructor(params?: IVersionLoaderProps) {
     const {
@@ -18,33 +21,32 @@ export default class VersionLoader {
     } = params || {};
     this.jsPath = jsVersionPath;
     this.cssPath = cssVersionPath;
-    this.jsVersionMap = {}
-    this.cssVersionMap = {}
+    this.jsVersionMap = {};
+    this.cssVersionMap = {};
 
-    this.loadVersion()
+    this.loadVersion();
   }
 
   transformMap(filePath: string) {
-    return JSON.parse(fs.readFileSync(filePath).toString())
+    return JSON.parse(fs.readFileSync(filePath).toString());
   }
 
   loadVersion() {
-    this.jsVersionMap = this.transformMap(this.jsPath)
-    this.cssVersionMap = this.transformMap(this.cssPath)
+    this.jsVersionMap = this.transformMap(this.jsPath);
+    this.cssVersionMap = this.transformMap(this.cssPath);
   }
 
   loadJs(chunkName: string) {
-    const linkPath = this.jsVersionMap[chunkName]
+    const linkPath = this.jsVersionMap[chunkName];
 
-    if (!linkPath) return ''
-    return `<script src="${linkPath}" type="text/javascript"></script>`
+    if (!linkPath) return '';
+    return `<script src="${linkPath}" type="text/javascript"></script>`;
   }
 
   loadCss(chunkName: string) {
-    const linkPath = this.cssVersionMap[chunkName]
+    const linkPath = this.cssVersionMap[chunkName];
 
-    if (!linkPath) return ''
-    return `<link rel="stylesheet" type="text/css" href="${linkPath}" />
-    `
+    if (!linkPath) return '';
+    return `<link rel="stylesheet" type="text/css" href="${linkPath}" />`;
   }
 }

@@ -1,5 +1,7 @@
 import Koa from 'koa';
-
+// @ts-ignore
+import koaViews from 'koa-nunjucks-2';
+import path from 'path';
 import GetConfig from './middlewares/config';
 import myLog from './middlewares/log';
 import myView from './middlewares/view';
@@ -7,10 +9,7 @@ import myState from './middlewares/state';
 import myLoad from './middlewares/load';
 import myHeader from './middlewares/header';
 import myStatic from './middlewares/static';
-// @ts-ignore
-import koaViews from 'koa-nunjucks-2';
 
-import path from 'path';
 import { router } from './init/route';
 
 const app = new Koa();
