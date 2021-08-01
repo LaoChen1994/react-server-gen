@@ -3,6 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getPageEntry } = require('./utils');
 const VersionGenPlugin = require('./VersionPlugin')
 const DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+  const BASE_DIR = path.resolve(__dirname, '../pages')
 
 module.exports = (env) => {
   const isProduction = env.NODE_ENV === 'production'
@@ -54,15 +56,22 @@ module.exports = (env) => {
             'css-loader?modules',
             'sass-loader'
           ],
-          exclude: /node_modules/,
-          include: [path.resolve(__dirname, '../pages')],
+          include: [BASE_DIR],
         },
+        {
+          test: /\.(ttf|cof|png)/,
+          use: 'file-loader'
+        }
       ],
     },
     plugins: [
       new MiniCssExtractPlugin({
         filename: isProduction ? '[name]_[hash].css' : '[name].css',
         linkType: 'text/css'
+      }),
+      new MonacoWebpackPlugin({
+        languages: ['javascript', 'typescript', 'json'],
+        features:["coreCommands","find"]
       }),
       new VersionGenPlugin({
         jsPublicPath: 'http://127.0.0.1:3000/public/',

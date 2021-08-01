@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { About } from './about';
+import Editor from './Editor'
 import styles from './style.css'
 
 interface AppComponent {
@@ -24,6 +25,7 @@ export default class App extends Component<{}, AppComponent> {
       <div>
         <h1 className={styles.font}>{title}</h1>
         <About />
+        <Editor />
       </div>
     );
   }

@@ -9,7 +9,7 @@ const headerMiddleware: Application.Middleware<
   IMyApplicationCtx
 > = async (ctx, next) => {
   const urlPath = ctx.path;
-  const regx = /\/public\/(\w+)\.(\w+)/i;
+  const regx = /\/public\/(.+)\.(\w+)$/i;
   const { publicPath } = ctx.config;
 
   let staticPath = '';

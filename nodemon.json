@@ -8,7 +8,7 @@
     },
     "exec": "npx ts-node ./app/app.ts",
     "ext": "js json ts tsx njk",
-    "watch": ["app/*"],
+    "watch": ["./app/**/*"],
     "env": {
       "NODE_ENV": "development",
       "PORT": "3002"
