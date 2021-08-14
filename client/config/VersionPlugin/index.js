@@ -24,7 +24,7 @@ class VersionPlugin {
       publicPath = '',
       mode = GEN_MODE.OVERITE,
       jsVersionPath = '',
-      cssVersionPath = ''
+      cssVersionPath = '',
     } = props;
 
     this.jsPublicPath = jsPublicPath;
@@ -33,8 +33,8 @@ class VersionPlugin {
     this.isProduction = isProduction;
     this.publicPath = publicPath;
     this.mode = mode;
-    this.jsVersionPath = jsVersionPath
-    this.cssVersionPath = cssVersionPath
+    this.jsVersionPath = jsVersionPath;
+    this.cssVersionPath = cssVersionPath;
   }
 
   getStaticPath(fileName) {
@@ -64,35 +64,29 @@ class VersionPlugin {
   apply(compiler) {
     let chunkJSMap = {};
     let chunkCssMap = {};
-    const that = this;
-    const jsVersionPath = path.resolve(
-      __dirname,
-      this.jsVersionPath
-    );
-    const cssVersionPath = path.resolve(
-      __dirname,
-     this.cssVersionPath
-    );
+    const jsVersionPath = path.resolve(__dirname, this.jsVersionPath);
+    const cssVersionPath = path.resolve(__dirname, this.cssVersionPath);
 
     compiler.hooks.emit.tapAsync('myPlugin', async function (compilation, cb) {
       compilation.chunks.forEach((chunk) => {
         const chunkName = chunk.name;
 
         chunk.files.forEach((filename) => {
-          const { type, path } = that.getStaticPath(filename);
+          const { type, path: _staticPath } = this.getStaticPath(filename);
           switch (type) {
             case STATIC_FILE_TYPE.JS:
-              chunkJSMap[chunkName] = path;
+              chunkJSMap[chunkName] = _staticPath;
               break;
             case STATIC_FILE_TYPE.CSS:
-              chunkCssMap[chunkName] = path;
+              chunkCssMap[chunkName] = _staticPath;
+              break;
             default:
               break;
           }
         });
       });
 
-      if (that.mode === GEN_MODE.MERGE) {
+      if (this.mode === GEN_MODE.MERGE) {
         try {
           const prevJsMap = JSON.parse(fs.readFileSync(jsVersionPath) || '{}');
           const prevCssMap = JSON.parse(
@@ -109,8 +103,8 @@ class VersionPlugin {
       fs.writeFileSync(jsVersionPath, JSON.stringify(chunkJSMap));
       fs.writeFileSync(cssVersionPath, JSON.stringify(chunkCssMap));
 
-      chalk.yellow(`js version 文件已经生成${jsVersionPath}`)
-      chalk.yellow(`css version 文件已经生成${cssVersionPath}`)
+      chalk.yellow(`js version 文件已经生成${jsVersionPath}`);
+      chalk.yellow(`css version 文件已经生成${cssVersionPath}`);
 
       cb();
     });
