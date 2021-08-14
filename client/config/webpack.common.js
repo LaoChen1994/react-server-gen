@@ -38,13 +38,20 @@ module.exports = (env) => {
                 presets: [
                   '@babel/preset-env',
                   '@babel/preset-typescript',
-                  '@babel/preset-react',
+                ],
+                plugins: [
+                  '@vue/babel-plugin-jsx'
                 ],
                 cacheDirectory: true,
               },
             },
           ],
           include: [path.resolve(__dirname, '../pages')],
+        },
+        {
+          test: /\.vue?$/,
+          use: 'vue-loader',
+          include: [path.resolve(__dirname, '../pages')]
         },
         {
           test: /\.s?(c|a)ss$/,

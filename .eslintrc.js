@@ -53,13 +53,7 @@ module.exports = {
       ERROR,
       { extensions: ['.tsx', 'ts', '.jsx', 'js'] },
     ],
-    'react/jsx-indent-props': [ERROR, 2],
-    'react/jsx-indent': [ERROR, 2],
-    'react/jsx-one-expression-per-line': OFF,
-    'react/destructuring-assignment': OFF,
-    'react/state-in-constructor': OFF,
-    'react/jsx-props-no-spreading': OFF,
-    'react/prop-types': OFF,
+    'react/react-in-jsx-scope': OFF,
 
     'jsx-a11y/click-events-have-key-events': OFF,
     'jsx-a11y/no-noninteractive-element-interactions': OFF,
@@ -84,6 +78,9 @@ module.exports = {
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
     'import/resolver': {
       node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+      browser: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },

@@ -67,7 +67,7 @@ class VersionPlugin {
     const jsVersionPath = path.resolve(__dirname, this.jsVersionPath);
     const cssVersionPath = path.resolve(__dirname, this.cssVersionPath);
 
-    compiler.hooks.emit.tapAsync('myPlugin', async function (compilation, cb) {
+    compiler.hooks.emit.tapAsync('myPlugin', async (compilation, cb) => {
       compilation.chunks.forEach((chunk) => {
         const chunkName = chunk.name;
 

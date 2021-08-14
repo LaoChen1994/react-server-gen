@@ -7,7 +7,7 @@ function getPageEntry() {
   const dirList = fs.readdirSync(dirPath);
 
   const resolve = dirList.reduce((p, dir) => {
-    const entryPath = path.join(dirPath, dir, 'main.tsx');
+    const entryPath = path.join(dirPath, dir, 'main.ts');
     const stat = fs.existsSync(entryPath);
 
     if (!stat) {
