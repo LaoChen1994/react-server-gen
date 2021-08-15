@@ -1,7 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getPageEntry } = require('./utils');
-const VersionGenPlugin = require('./VersionPlugin')
+const { VersionPlugin: VersionGenPlugin, GEN_MODE } = require('webpack-version-generation-plugin')
 const DllReferencePlugin = require('webpack/lib/DllReferencePlugin')
 
 module.exports = (env) => {
@@ -76,7 +76,7 @@ module.exports = (env) => {
         cssPublicPath: 'http://127.0.0.1:3000/public/',
         localPath: path.resolve(__dirname, '../../local'),
         isProduction,
-        mode: 'merge',
+        mode: GEN_MODE.MERGE,
         jsVersionPath: path.resolve(__dirname, '../../config/version_js.json'),
         cssVersionPath: path.resolve(__dirname, '../../config/version_css.json')
       }),

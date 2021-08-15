@@ -48,6 +48,7 @@
     "terser-webpack-plugin": "^5.1.1",
     "typescript": "4.1",
     "vue": "^3.2.2",
-    "vue-loader": "^16.5.0"
+    "vue-loader": "^16.5.0",
+    "webpack-version-generation-plugin": "^1.0.2"
   }
 }
