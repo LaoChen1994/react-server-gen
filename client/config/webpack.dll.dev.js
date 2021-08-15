@@ -1,6 +1,6 @@
 const path = require('path');
 const DllPlugin = require('webpack/lib/DllPlugin');
-const VersionGenPlugin = require('./VersionPlugin');
+const { VersionPlugin: VersionGenPlugin, GEN_MODE } = require('webpack-version-generation-plugin')
 
 module.exports = (env) => {
   const isProduction = env.NODE_ENV === 'production';

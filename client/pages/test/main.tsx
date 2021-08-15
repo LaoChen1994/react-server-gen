@@ -6,7 +6,7 @@ interface AppComponent {
   title: string;
 }
 
-export default class App extends Component<{}, AppComponent> {
+export default class App extends Component<unknown, AppComponent> {
   constructor(props) {
     super(props);
 
