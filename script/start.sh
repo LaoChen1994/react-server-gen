@@ -1,4 +1,4 @@
-echo "开始进入项目发布"
+echo "开始进入部署"
 echo "开始安装依赖"
 
 yarn dep:install
