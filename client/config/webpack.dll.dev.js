@@ -1,6 +1,6 @@
 const path = require('path');
 const DllPlugin = require('webpack/lib/DllPlugin');
-const VersionGenPlugin = require('./VersionPlugin');
+const { VersionPlugin } = require('webpack-version-generation-plugin');
 
 module.exports = (env) => {
   const isProduction = env.NODE_ENV === 'production';
@@ -19,7 +19,7 @@ module.exports = (env) => {
         name: 'base',
         path: path.join(__dirname, '../../local/[name]_manifest.json'),
       }),
-      new VersionGenPlugin({
+      new VersionPlugin({
         jsPublicPath: 'http://127.0.0.1:3000/public/',
         cssPublicPath: 'http://127.0.0.1:3000/public/',
         localPath: path.resolve(__dirname, '../../local'),

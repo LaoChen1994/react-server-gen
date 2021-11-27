@@ -31,6 +31,8 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-unicorn": "^34.0.1",
+    "pd-css-config": "0.3.0",
+    "pd-ts-config": "0.3.0",
     "sass": "^1.34.0",
     "sass-loader": "^11.1.1",
     "unicorn": "^0.0.1",
@@ -40,12 +42,14 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.16.4",
     "chalk": "^4.1.0",
     "css-modules-typescript-loader": "^4.0.1",
     "mini-css-extract-plugin": "^1.3.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "terser-webpack-plugin": "^5.1.1",
-    "typescript": "4.1"
+    "typescript": "4.1",
+    "webpack-version-generation-plugin": "1.0.3"
   }
 }

@@ -8,7 +8,7 @@ interface AppComponent {
 }
 
 export default class App extends Component<unknown, AppComponent> {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.state = {
